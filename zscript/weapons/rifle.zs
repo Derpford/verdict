@@ -1,6 +1,7 @@
 class VerdictSamRifle : VerdictWeapon replaces Chaingun {
     default {
         VerdictWeapon.Pouch "SamRiflePouch";
+        VerdictWeapon.FirstLoad 30,0;
         Weapon.SlotNumber 4;
         Tag "Ronin Arms 'Ultra Samurai' Combat Rifle";
         Inventory.PickupMessage "Acquired the Ronin Arms 'Ultra Samurai'.";
@@ -110,5 +111,13 @@ class SamRiflePouch : MagPouch {
         MagPouch.Type "SamMag", "SamRound";
         MagPouch.Mags 3;
         MagPouch.Reload 25;
+    }
+
+    override int StartMagFill(int slot) {
+        if (slot < 1) {
+            return magCapacity;
+        } else {
+            return 0;
+        }
     }
 }
