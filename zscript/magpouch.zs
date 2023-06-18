@@ -28,6 +28,9 @@ class MagPouch : Inventory {
     int ticsPerLoad;
     Property Reload: ticsPerLoad;
 
+    bool showLoose; // if true, show spare ammo as a "mag".
+    property ShowLoose : showLoose;
+
     Array<Int> mags;
 
     default {
@@ -35,6 +38,7 @@ class MagPouch : Inventory {
         MagPouch.Reload 35;
         MagPouch.Mags 2;
         MagPouch.Capacity 30;
+        MagPouch.ShowLoose false;
     }
 
     virtual int StartMagFill(int slot) {
@@ -55,6 +59,7 @@ class MagPouch : Inventory {
 
     override void DoEffect() {
         // Here's where we look for a half-empty mag to fill.
+        if (ticsPerLoad < 0) { return; } // -1 or less means skip reloading.
         if (loadTimer >= ticsPerLoad) {
             for (int i = 0; i < magSlots; i++) {
                 if (mags[i] < magCapacity) {
@@ -155,6 +160,7 @@ class MagPouch : Inventory {
 
     override bool HandlePickup(Inventory item) {
         // Here, we intercept any Magazines of our chosen type.
+        if (!mag) {return super.HandlePickup(item);} // If we don't have a mag, just don't worry about it
         if (item is mag) {
             // First, check to see if we need to randomize the amount.
             if (item.amount == -1) {

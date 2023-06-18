@@ -38,13 +38,22 @@ class VerdictHUD : BaseStatusBar {
             if (vwep.chamber) {
                 DrawImage("VERTBAR",(-28,0),frameFlags);
             }
-            for (int i = 0; i < pouch.mags.size(); i++) {
+            for (int i = 0; i <= pouch.mags.size(); i++) {
                 Vector2 p = sparepos;
                 p.y += i * 8;
-                if (pouch.mags[i] >= 0) {
-                    DrawString(mConFont,FormatNumber(pouch.mags[i],3,3,FNF_FILLZEROS),p,magDisFlags,magDisColor);
+                if (i == pouch.mags.size()) {
+                    // Special handling for loose ammo.
+                    if (pouch.showLoose) {
+                        int amt = GetAmount(pouch.ammotype);
+                        string v = String.Format("[%s]",FormatNumber(amt,3,3,FNF_FILLZEROS));
+                        DrawString(mConFont,v,p,magDisFlags,magDisColor);
+                    }
                 } else {
-                    DrawString(mConFont,"---",p,magDisFlags,magDisColor);
+                    if (pouch.mags[i] >= 0) {
+                        DrawString(mConFont,FormatNumber(pouch.mags[i],3,3,FNF_FILLZEROS),p,magDisFlags,magDisColor);
+                    } else {
+                        DrawString(mConFont,"---",p,magDisFlags,magDisColor);
+                    }
                 }
             }
         }
