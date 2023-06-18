@@ -11,3 +11,4 @@ version "4.10"
 
 // The weapons.
 #include "zscript/weapons/magnum.zs"
+#include "zscript/weapons/rifle.zs"
