@@ -1,0 +1,7 @@
+"misc/armbreak" "sounds/bhit_helmet-1.mp3"
+"misc/armhit1" "sounds/armorhit1.ogg"
+$limit "misc/armhit1" 4
+"misc/armhit2" "sounds/armorhit2.ogg"
+$limit "misc/armhit2" 3
+$random "misc/armhit" { "misc/armhit1" "misc/armhit2" }
+$pitchshift "misc/armhit" 4
