@@ -1,4 +1,4 @@
-class VerdictSamRifle : VerdictWeapon {
+class VerdictSamRifle : VerdictWeapon replaces Chaingun {
     default {
         VerdictWeapon.Pouch "SamRiflePouch";
         Weapon.SlotNumber 4;
@@ -78,7 +78,7 @@ class SamShot : VerdictShot {
             PLS2 AB 2 Bright;
             Loop;
         Death:
-            PLS2 CDE 2 Bright;
+            BAL1 CDE 2 Bright;
             Stop;
     }
 }
@@ -87,11 +87,12 @@ class SamTrail : Actor {
     default {
         +NOINTERACTION;
         RenderStyle "Add";
+        Scale 0.1;
     }
 
     states {
         Spawn:
-            PLS2 ABCDE 3;
+            BAL1 ABCDE 3;
             Stop;
     }
 }
