@@ -20,6 +20,7 @@ class VerdictMagnum : VerdictWeapon {
             Loop;
 
         Fire:
+            MAGN B 0 A_StartSound("weapons/magnumf",4);
             MAGN B 0 Bright A_FireProjectile("MagnumShot");
             MAGN B 3 Bright A_WeaponOffset(0,18,WOF_ADD);
             MAGN CDA 3 Bright A_WeaponOffset(0,-6,WOF_ADD);

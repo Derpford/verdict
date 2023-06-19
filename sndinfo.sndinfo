@@ -5,3 +5,14 @@ $limit "misc/armhit1" 4
 $limit "misc/armhit2" 3
 $random "misc/armhit" { "misc/armhit1" "misc/armhit2" }
 $pitchshift "misc/armhit" 4
+
+"misc/i_pkup" "sounds/Ballpick.wav"
+
+"weapons/magnumf" "sounds/BallzoAltfire.wav"
+
+"weapons/riflef" "sounds/Turbofire.wav"
+"weapons/riflex" "sounds/Cdhit.wav"
+$pitchshift "weapons/riflex" 3
+
+"weapons/sluggf" "sounds/Scatterfire.wav"
+"weapons/sluggx" "sounds/ScatterAltImpact.wav"

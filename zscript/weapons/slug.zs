@@ -25,6 +25,7 @@ class VerdictSlugGun : VerdictWeapon replaces Shotgun {
             Loop;
         
         Fire:
+            SLGG B 0 A_StartSound("weapons/sluggf",4);
             SLGG B 0 A_FireProjectile("ShotSlug");
             SLGG B 3 Bright A_WeaponOffset(0,20,WOF_ADD);
             SLGG C 3 Bright A_WeaponOffset(0,6,WOF_ADD);
@@ -95,6 +96,7 @@ class ShotSlug : VerdictShot {
         radius 4;
         height 4;
         Decal "RedPlasmaScorch";
+        DeathSound "weapons/sluggx";
     }
 
     override int DoSpecialDamage(Actor tgt, int dmg, name mod) {

@@ -9,6 +9,7 @@ class VerdictShot : Missile {
         +MISSILE.HITONCE; // Only does damage once per target.
         VerdictShot.Pen 2; // Default to only overpenetrating on kills. Good middle ground for testing.
         DamageFunction (20);
+        DeathSound "weapons/riflex";
     }
 
     override int DoSpecialDamage(Actor tgt, int dmg, name mod) {
@@ -22,17 +23,19 @@ class VerdictShot : Missile {
                 break;
             case 2:
                 // Overpen if the damage would kill the target (before modifiers).
-                overpen = (tgt.health - dmg <= 0);
+                overpen = ((tgt.health - dmg) <= 0);
                 break;
             case 3:
                 // Overpen if the damage would gib the target (before modifiers).
-                overpen = (tgt.health - dmg <= tgt.GetGibHealth());
+                overpen = ((tgt.health - dmg) <= tgt.GetGibHealth());
                 break;
         }
 
         if (!overpen) {
             // Remove +RIPPER and die.
+            console.printf("Dying");
             bRIPPER = false;
+            vel = (0,0,0);
             SetState(ResolveState("Death"));
         }
 

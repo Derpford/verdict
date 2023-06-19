@@ -32,6 +32,7 @@ class VerdictSamRifle : VerdictWeapon replaces Chaingun {
             Goto Ready;
         
         Fire:
+            RIFL B 0 A_StartSound("weapons/riflef",4);
             RIFL B 0 A_FireProjectile("SamShot");
             RIFL B 1 Bright A_WeaponOffset(0,22,WOF_ADD);
             RIFL C 1 Bright;
@@ -67,6 +68,7 @@ class SamShot : VerdictShot {
         Scale 0.3;
         Decal "RedPlasmaScorch";
         Speed 80;
+        DeathSound "weapons/riflex";
     }
 
     override void Tick() {
