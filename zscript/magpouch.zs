@@ -62,7 +62,7 @@ class MagPouch : Inventory {
         if (ticsPerLoad < 0) { return; } // -1 or less means skip reloading.
         if (loadTimer >= ticsPerLoad) {
             for (int i = 0; i < magSlots; i++) {
-                if (mags[i] < magCapacity) {
+                if (mags[i] < magCapacity && mags[i] >= 0) { // Can't reload a non-existent mag...
                     if (owner.CountInv(ammotype) > 0) {
                         owner.TakeInventory(ammotype,1);
                         mags[i]++;
