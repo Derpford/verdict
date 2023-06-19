@@ -99,9 +99,18 @@ class SamTrail : Actor {
 }
 
 class SamRound : Ammo {
+    mixin LootBeam;
     default {
         Inventory.Amount 1;
         Inventory.MaxAmount 25;
+        Scale 0.4;
+        Inventory.PickupMessage "Acquired a 5mm Ultra Samurai round.";
+    }
+
+    states {
+        Spawn:
+            RMAG B -1;
+            Stop;
     }
 }
 
@@ -117,7 +126,7 @@ class SamRiflePouch : MagPouch {
         if (slot < 1) {
             return magCapacity;
         } else {
-            return 0;
+            return -1; // Only one spare to start with!
         }
     }
 }
