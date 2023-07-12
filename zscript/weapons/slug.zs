@@ -4,7 +4,7 @@ class VerdictSlugGun : VerdictWeapon replaces Shotgun {
         Weapon.SlotNumber 3;
         VerdictWeapon.FirstLoad 4,0;
         VerdictWeapon.Pouch "ShellPouch";
-        Tag "S.P.M.R. Shotgun";
+        Tag "SPMR Shotgun";
         Inventory.PickupMessage "Acquired a SPMR Shotgun. Non-standard equipment.";
     }
 
@@ -89,7 +89,7 @@ class NanoSlugPack : NanoSlug replaces ShellBox {
 
 class ShotSlug : VerdictShot {
     default {
-        DamageFunction (30 + (random(0,2) * 15));
+        DamageFunction (45 + (random(0,2) * 15));
         VerdictShot.Pen 2;
         speed 75;
         scale 0.3;
@@ -102,7 +102,7 @@ class ShotSlug : VerdictShot {
     override int DoSpecialDamage(Actor tgt, int dmg, name mod) {
         int newdmg = super.DoSpecialDamage(tgt,dmg,mod);
         if (!overpen) {
-            newdmg *= 2;
+            newdmg = ceil(newdmg * 2.5);
             // console.printf("Doubled damage! "..newdmg);
         }
         return newdmg;
