@@ -58,7 +58,7 @@ class VerdictShot : Missile {
     virtual vector2 GetDeviation(bool repeat) {
         // Returns the angle/pitch that the projectile should deviate by next.
         if (repeat) {
-            return deviate;
+            return deviate + (0,0.1);
         } else {
             return (frandom(-1,1) / 35.,frandom(-1,1) / 35.);
         }
@@ -72,7 +72,7 @@ class VerdictShot : Missile {
             deviate = GetDeviation(deviate != (0,0)); 
             // If the deviation is (0,0), it must not have been set, so if it's not (0,0) this must be the second time
             angle += deviate.x;
-            pitch += deviate.y;
+            pitch = clamp(pitch + deviate.y, -180, 180); // To avoid projectiles doing loop-de-loops.
             Vel3DFromAngle(vel.length(),angle,pitch); // Default behavior causes the projectile to curve steadily.
         }
     }
