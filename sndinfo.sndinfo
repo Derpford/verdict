@@ -16,3 +16,5 @@ $pitchshift "weapons/riflex" 3
 
 "weapons/sluggf" "sounds/Scatterfire.wav"
 "weapons/sluggx" "sounds/ScatterAltImpact.wav"
+
+"weapons/flakf" "sounds/ScatterAltImpact.wav"
