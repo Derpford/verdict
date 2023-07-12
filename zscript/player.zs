@@ -4,6 +4,7 @@ class VerdictOfficer : DoomPlayer {
     int healdelay;
     default {
         Player.StartItem "VerdictMagnum";
+        Player.StartItem "PartialAmmoHandler";
         Player.StartItem "VerdictArmor", 400;
     }
 

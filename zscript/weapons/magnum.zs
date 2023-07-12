@@ -111,6 +111,19 @@ class MagnumBullets : Ammo {
     }
 }
 
+class MagnumBulletBox : MagnumBullets {
+    mixin LootBeam;
+    default {
+        Inventory.Amount 12;
+    }
+    
+    states {
+        Spawn:
+            BBOX B -1;
+            Stop;
+    }
+}
+
 class MagnumPouch: MagPouch {
     default {
         MagPouch.Type "MagnumClip","MagnumBullets";
