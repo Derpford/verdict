@@ -68,15 +68,11 @@ class SamShot : VerdictShot {
         DamageFunction (18+(random(0,2)*6));
         VerdictShot.Pen 3;
         VerdictShot.Deviate 640; // Deviates sooner than the magnum.
+        VerdictShot.Trail "SamTrail", 1;
         Scale 0.3;
         Decal "RedPlasmaScorch";
         Speed 80;
         DeathSound "weapons/riflex";
-    }
-
-    override void Tick() {
-        A_SpawnItemEX("SamTrail");
-        Super.Tick();
     }
 
     states {
@@ -93,13 +89,13 @@ class SamTrail : Actor {
     default {
         +NOINTERACTION;
         RenderStyle "Add";
-        Scale 0.1;
+        Scale 0.2;
     }
 
     states {
         Spawn:
-            BAL1 ABCDE 3;
-            Stop;
+            PLS2 AB 4 A_FadeOut(0.1);
+            Loop;
     }
 }
 

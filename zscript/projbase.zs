@@ -9,10 +9,18 @@ class VerdictShot : Missile {
     double deviateRange; // How far does it have to travel before it starts deviating?
     Property Deviate : deviateRange;
 
+    Name trail; // Look, I'm not gonna reimplement trails a hundred times.
+    int trailspacing;
+    Property Trail : trail, trailspacing;
+    double trailvelx, trailvely, trailvelz; // How far the trail spreads as it fades out
+    Property TrailVel : trailvelx, trailvely, trailvelz;
+
     default {
         +MISSILE.HITONCE; // Only does damage once per target.
         VerdictShot.Pen 2; // Default to only overpenetrating on kills. Good middle ground for testing.
         VerdictShot.Deviate 1024;
+        VerdictShot.Trail "", 1;
+        VerdictShot.TrailVel 0, 0.1, 0.1;
         DamageFunction (20);
         DeathSound "weapons/riflex";
     }
@@ -74,6 +82,15 @@ class VerdictShot : Missile {
             angle += deviate.x;
             pitch = clamp(pitch + deviate.y, -180, 180); // To avoid projectiles doing loop-de-loops.
             Vel3DFromAngle(vel.length(),angle,pitch); // Default behavior causes the projectile to curve steadily.
+        }
+
+        if ((GetAge() % trailspacing == 0) && trail) {
+            Vector3 tv = (
+                frandom(-trailvelx,trailvelx),
+                frandom(-trailvely,trailvely),
+                frandom(-trailvelz,trailvelz)
+            );
+            A_SpawnItemEX(trail,xvel:tv.x,yvel:tv.y,zvel:tv.z);
         }
     }
 

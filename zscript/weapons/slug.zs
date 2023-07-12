@@ -99,6 +99,8 @@ class ShotSlug : VerdictShot {
     default {
         DamageFunction (45 + (random(0,2) * 15));
         VerdictShot.Pen 2;
+        VerdictShot.Trail "NanoTrail", 1;
+        VerdictShot.TrailVel 0,0,0;
         speed 75;
         scale 0.3;
         radius 4;
@@ -123,6 +125,20 @@ class ShotSlug : VerdictShot {
         
         Death:
             BAL1 CDE 2 Bright;
+            Stop;
+    }
+}
+
+class NanoTrail : Actor {
+    default {
+        +NOINTERACTION;
+        RenderStyle "Add";
+        Scale 0.1;
+    }
+
+    states {
+        Spawn:
+            BAL1 CDEDC 3;
             Stop;
     }
 }

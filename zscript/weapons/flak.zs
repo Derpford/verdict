@@ -93,8 +93,10 @@ class VerdictFlak : VerdictShot {
         DamageFunction (7 + random(0,1)); // total comes out to between 140 and 160
         VerdictShot.Pen 1;
         VerdictShot.Deviate 256; // Deviates rapidly!
+        VerdictShot.Trail "FlakTrail",1;
+        VerdictShot.TrailVel 0,0.05,0.05;
         Speed 55;
-        Scale 0.3;
+        Scale 0.2;
         radius 2;
         height 2;
         Decal "RedPlasmaScorch";
@@ -114,5 +116,11 @@ class VerdictFlak : VerdictShot {
     override vector2 GetDeviation(bool repeat) {
         // Tumbles wildly.
         return (frandom(-2,2),frandom(0,0.5));
+    }
+}
+
+class FlakTrail : NanoTrail {
+    default {
+        Scale 0.05;
     }
 }
