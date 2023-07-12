@@ -1,8 +1,8 @@
 mixin class LootBeam {
     // For when you need something to have a lootbeam.
     override void Tick() {
-        if (!owner) {
-            // While on the ground, emit a lootbeam.
+        if (!owner && amount != 0) {
+            // While on the ground and not empty, emit a lootbeam.
             A_SpawnParticle("00FFFF",SPF_FULLBRIGHT,5,5,velz:5);
         }
         super.Tick();

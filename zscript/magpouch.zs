@@ -137,12 +137,27 @@ class MagPouch : Inventory {
         droppedMag.angle = frandom(0,360);
     }
 
-    void DropOne() {
+    void DropOne(bool empty = false) {
         // Pick the lowest mag in our inventory...
         int m = FindLowestMag();
         if (m < 0) {return;}
         // And drop it.
         int dropped = mags[m];
+        // Attempt to put ammo into the spare ammo bag.
+        if (empty) {
+            Inventory a = owner.FindInventory(ammotype);
+            if (!a) { 
+                owner.GiveInventory(ammotype,0);
+                a = owner.FindInventory(ammotype);
+            }
+            if (a) {
+                console.printf("Emptying ammo out.");
+                int diff = a.maxamount - a.amount;
+                diff = min(diff,dropped);
+                dropped -= diff;
+                a.amount += diff;
+            }
+        }
         mags[m] = -1;
         SpawnMag(dropped);
     }
@@ -188,9 +203,22 @@ class Magazine : Inventory {
         Inventory.PickupMessage "Acquired a DEV_NULL magazine.";
     }
 
+    override bool TryPickup (in out actor touch) {
+        if (amount == 0) {
+            int btns = touch.GetPlayerInput(INPUT_BUTTONS);
+            if (btns & BT_USE) {
+                return super.TryPickup(touch);
+            } else {
+                return false;
+            }
+        } // Empty mags cannot normally be picked up. You have to hold use to grab them.
+
+        return super.TryPickup(touch);
+    }
+
     virtual int GetRandAmount() {
-        // can be overridden, but the default impl is between 25 and 50 percent fill
-        return floor(magCapacity * frandom(0.25,0.5));
+        // can be overridden, but the default impl is between 25 and 75 percent fill
+        return floor(magCapacity * frandom(0.25,0.75));
     }
 
 

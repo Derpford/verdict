@@ -90,6 +90,9 @@ class VerdictWeapon : Weapon {
             if (btns & BT_USER3 && !(oldbtns & BT_USER3)) { // Drop a mag.
                 MagPouch(owner.FindInventory(pouch)).DropOne();
             }
+            if (btns & BT_USER4 && !(oldbtns & BT_USER4)) { // Empty a mag and drop it.
+                MagPouch(owner.FindInventory(pouch)).DropOne(true);
+            }
         }
     }
 
