@@ -4,6 +4,7 @@ class VerdictSSG : VerdictWeapon replaces SuperShotgun {
         Weapon.SlotNumber 3;
         VerdictWeapon.FirstLoad 3,0;
         VerdictWeapon.Pouch "ShellPouch";
+        VerdictWeapon.Drop "NanoSlugMix";
         Tag "RD/MST Shotgun";
         Inventory.PickupMessage "Acquired a RD/MST Shotgun.";
     }

@@ -12,6 +12,9 @@ class VerdictWeapon : Weapon {
 
     int firemode; // For weapons that set a firemode.
 
+    Name spawnwith; // For dropping something nearby.
+    Property Drop : spawnwith;
+
     default {
         VerdictWeapon.Pouch "MagPouch";
         VerdictWeapon.FirstLoad 30, 0;
@@ -21,6 +24,9 @@ class VerdictWeapon : Weapon {
 
     override void PostBeginPlay() {
         // Chamber is always full on a new weapon.
+        if (spawnwith) {
+            A_SpawnItemEX(spawnwith);
+        }
         chamber = 1;
         chamber2 = 1;
     }

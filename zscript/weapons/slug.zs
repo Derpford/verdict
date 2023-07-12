@@ -4,6 +4,7 @@ class VerdictSlugGun : VerdictWeapon replaces Shotgun {
         Weapon.SlotNumber 3;
         VerdictWeapon.FirstLoad 4,0;
         VerdictWeapon.Pouch "ShellPouch";
+        VerdictWeapon.Drop "NanoSlugMix";
         Tag "SPMR Shotgun";
         Inventory.PickupMessage "Acquired a SPMR Shotgun. Non-standard equipment.";
     }
@@ -84,6 +85,13 @@ class NanoSlugPack : NanoSlug replaces ShellBox {
         Spawn:
             SHEL A -1;
             Stop;
+    }
+}
+
+class NanoSlugMix : RandomSpawner {
+    default {
+        DropItem "NanoSlugPack", 255, 1;
+        DropItem "NanoSlug", 255, 3;
     }
 }
 

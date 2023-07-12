@@ -1,14 +1,18 @@
-class VerdictMagnum : VerdictWeapon {
+class VerdictMagnum : VerdictWeapon replaces Pistol {
     // Standard issue coil magnum.
 
     default {
         VerdictWeapon.FirstLoad 7,0;
         VerdictWeapon.Pouch "MagnumPouch";
+        VerdictWeapon.Drop "MagnumClip";
         Weapon.SlotNumber 2;
         Tag "Std. Issue Verdict Dept. Coil Magnum";
     }
 
     states {
+        Spawn:
+            MAGI A -1;
+            Stop;
         Select:
             MAGN A 1 A_Raise(24);
             Loop;

@@ -2,6 +2,7 @@ class VerdictSamRifle : VerdictWeapon replaces Chaingun {
     default {
         VerdictWeapon.Pouch "SamRiflePouch";
         VerdictWeapon.FirstLoad 30,0;
+        VerdictWeapon.Drop "SamMag";
         Weapon.SlotNumber 4;
         Tag "Ronin Arms 'Ultra Samurai' Combat Rifle";
         Inventory.PickupMessage "Acquired the Ronin Arms 'Ultra Samurai'.";
@@ -50,6 +51,7 @@ class SamMag : Magazine {
     default {
         Magazine.Capacity 30;
         Scale 0.3;
+        Inventory.PickupMessage "Acquired a 5mm Ultra Samurai magazine.";
     }
 
     states {
