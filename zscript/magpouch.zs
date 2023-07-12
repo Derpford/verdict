@@ -1,14 +1,3 @@
-mixin class LootBeam {
-    // For when you need something to have a lootbeam.
-    override void Tick() {
-        if (!owner) {
-            // While on the ground, emit a lootbeam.
-            A_SpawnParticle("00FFFF",SPF_FULLBRIGHT,5,5,velz:5);
-        }
-        super.Tick();
-    }
-}
-
 class MagPouch : Inventory {
     // A pouch which holds Magazines.
     // Internally, these are tracked as an array. Multiple ammo types are out of scope right now, so no arrays of arrays here...
@@ -38,7 +27,7 @@ class MagPouch : Inventory {
         MagPouch.Reload 35;
         MagPouch.Mags 2;
         MagPouch.Capacity 30;
-        MagPouch.ShowLoose false;
+        MagPouch.ShowLoose true;
     }
 
     virtual int StartMagFill(int slot) {
