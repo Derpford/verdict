@@ -29,6 +29,9 @@ class VerdictShot : Missile {
                 // Overpen if the damage would gib the target (before modifiers).
                 overpen = ((tgt.health - dmg) <= tgt.GetGibHealth());
                 break;
+            default:
+                // If overpen is set to zero, or above 3, don't set overpen to true.
+                break;
         }
 
         if (!overpen) {
