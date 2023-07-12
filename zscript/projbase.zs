@@ -58,7 +58,7 @@ class VerdictShot : Missile {
     virtual vector2 GetDeviation(bool repeat) {
         // Returns the angle/pitch that the projectile should deviate by next.
         if (repeat) {
-            return deviate + (0,0.1);
+            return deviate + (0,(0.1 / 35.));
         } else {
             return (frandom(-1,1) / 35.,frandom(-1,1) / 35.);
         }
