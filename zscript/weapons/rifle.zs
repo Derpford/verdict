@@ -67,6 +67,7 @@ class SamShot : VerdictShot {
         height 2;
         DamageFunction (18+(random(0,2)*6));
         VerdictShot.Pen 3;
+        VerdictShot.Deviate 640; // Deviates sooner than the magnum.
         Scale 0.3;
         Decal "RedPlasmaScorch";
         Speed 80;
