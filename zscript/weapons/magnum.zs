@@ -86,6 +86,7 @@ class MagnumClip : Magazine {
     default {
         Magazine.Capacity 8;
         Inventory.PickupMessage "Acquired a Coil Magnum clip.";
+        Magazine.Pouch "MagnumPouch";
     }
 
     states {

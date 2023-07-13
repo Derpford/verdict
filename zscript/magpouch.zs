@@ -195,6 +195,8 @@ class Magazine : Inventory {
     // ...but there's also a Capacity value:
     int magCapacity;
     Property Capacity: magCapacity;
+    Name pouch;
+    Property Pouch : pouch; // For checking if you can pick the thing up.
     // This doesn't actually contain much logic, though.
     default {
         +FLATSPRITE;
@@ -204,16 +206,28 @@ class Magazine : Inventory {
     }
 
     override bool TryPickup (in out actor touch) {
+        bool emptypick = true;
         if (amount == 0) {
             int btns = touch.GetPlayerInput(INPUT_BUTTONS);
             if (btns & BT_USE) {
-                return super.TryPickup(touch);
+                emptypick = true;
             } else {
-                return false;
+                emptypick = false;
             }
         } // Empty mags cannot normally be picked up. You have to hold use to grab them.
 
-        return super.TryPickup(touch);
+        bool pouchpick = false;
+        if (pouch && touch.FindInventory(pouch)) {
+            pouchpick = true; // mags can only be picked up with a pouch!
+        } else {
+            pouchpick = false;
+        }
+
+        if (emptypick && pouchpick) {
+            return super.TryPickup(touch);
+        } else {
+            return false;
+        }
     }
 
     virtual int GetRandAmount() {

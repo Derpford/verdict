@@ -51,6 +51,7 @@ class SamMag : Magazine {
     default {
         Magazine.Capacity 30;
         Scale 0.3;
+        Magazine.Pouch "SamRiflePouch";
         Inventory.PickupMessage "Acquired a 5mm Ultra Samurai magazine.";
     }
 
@@ -111,6 +112,21 @@ class SamRound : Ammo {
     states {
         Spawn:
             RMAG B -1;
+            Stop;
+    }
+}
+
+class SamRoundBox : SamRound {
+    mixin LootBeam;
+    default {
+        Inventory.Amount 25;
+        Scale 1;
+        Inventory.PickupMessage "Acquired a box of 5mm Ultra Samurai rounds.";
+    }
+
+    states {
+        Spawn:
+            BBOX A -1;
             Stop;
     }
 }
