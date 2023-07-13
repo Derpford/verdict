@@ -20,6 +20,13 @@ class ClipReplacer : RandomSpawner replaces Clip {
     }
 }
 
+class BulletBoxReplacer : RandomSpawner replaces ClipBox {
+    default {
+        DropItem "MagnumBulletBox", 255, 4;
+        DropItem "SamRoundBox", 255, 3;
+    }
+}
+
 class BonusReplacer1 : RandomSpawner replaces HealthBonus {
     default {
         DropItem "LooseAmmo";
